@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Libros" %>
+
+<h1>Libros</h1>
+<%= form_with(url: libros_path, method: :get, local: true) do %>
+  <div>
+    <%= label_tag :query, "Buscar libros:" %>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Buscar" %>
+  </div>
+<% end %>
+<div id="libros">
+  <% @libros.each do |libro| %>
+    <%= render libro %>
+    <p>
+      <%= link_to "Show this libro", libro %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New libro", new_libro_path %>
